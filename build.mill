@@ -1,0 +1,17 @@
+//| mill-version: 1.0.6
+
+package build
+import mill.*, scalalib.*
+
+object app extends ScalaModule {
+  def scalaVersion = "3.7.3"
+  def mvnDeps = Seq(
+    mvn"org.typelevel::cats-core:2.13.0",
+    mvn"org.typelevel::cats-effect:3.6.3"
+  )
+
+  object test extends ScalaTests {
+    def mvnDeps = Seq(mvn"com.lihaoyi::utest:0.8.9")
+    def testFramework = "utest.runner.Framework"
+  }
+}
