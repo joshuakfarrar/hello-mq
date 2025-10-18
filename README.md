@@ -1,8 +1,8 @@
-# hello mq
+# Hello MQ!
 
-a simple app to learn about MQ
+A simple app to learn about MQ
 
-### Configure PowerShell Profile
+### 1. Configure your PowerShell Profile for UTF-8 Output
 
 Add the following to your PowerShell profile (run `notepad $PROFILE`):
 
