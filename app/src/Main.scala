@@ -12,7 +12,9 @@ case class MQConfig(
   host: String = "localhost",
   port: Int = 1414,
   channel: String = "DEV.APP.SVRCONN",
-  queueManager: String = "QM1"
+  queueManager: String = "QM1",
+  user: String = "app",
+  password: String = "password"
 )
 
 object MQClient:
@@ -26,7 +28,7 @@ object MQClient:
         cf.setChannel(config.channel)
         cf.setQueueManager(config.queueManager)
 
-        val conn = cf.createQueueConnection()
+        val conn = cf.createQueueConnection(config.user, config.password)
         conn.start()
         conn
       }
