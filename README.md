@@ -1,14 +1,34 @@
-# hello mq
+# Hello MQ!
 
-a simple app to learn about MQ
+A simple app to learn about MQ
 
 ## Requirements
 
-IBM MQ 9.3
+IBM MQ 9.3 (a trial version works just fine)
+
+Check that MQ is installed locally with `dspmqver`:
+
+```
+PS C:\Users\josh\g\hello-mq> dspmqver
+Name:        IBM MQ
+Version:     9.3.0.0
+Level:       p930-L220607.TRIAL
+BuildType:   IKAP - (Production)
+Platform:    IBM MQ for Windows (x64 platform)
+Mode:        64-bit
+O/S:         Windows 11 Unknown x64 Edition, Build 26100
+InstName:    Installation1
+InstDesc:
+Primary:     Yes
+InstPath:    C:\Program Files\IBM\MQ
+DataPath:    C:\ProgramData\IBM\MQ
+MaxCmdLevel: 930
+LicenseType: Trial
+```
 
 ## Getting Started
 
-### Configure PowerShell Profile
+### 1. Configure your PowerShell Profile for UTF-8 Output
 
 Add the following to your PowerShell profile (run `notepad $PROFILE`):
 
@@ -21,15 +41,15 @@ Add the following to your PowerShell profile (run `notepad $PROFILE`):
 Because our example uses channel auth, we have to have a local user (or a GMSA in the real world) we can authorize to use the channel.
 
 ```
-$Password = ConvertTo-SecureString "password" -AsPlainText -Force
-New-LocalUser "app" -Password $Password -Description "MQ Application User" -PasswordNeverExpires
+PS C:\Users\josh\g\hello-mq> $Password = ConvertTo-SecureString "password" -AsPlainText -Force
+PS C:\Users\josh\g\hello-mq> New-LocalUser "app" -Password $Password -Description "MQ Application User" -PasswordNeverExpires
 ```
 
 ### 3. Configure MQ
 
 First, let's create a new Queue Manager, `QM1`.
 
-```shell
+```
 PS C:\Users\josh\g\hello-mq> crtmqm QM1
 PS C:\Users\josh\g\hello-mq> strmqm QM1
 PS C:\Users\josh\g\hello-mq> runmqsc QM1
@@ -64,7 +84,7 @@ end
 You should see...
 
 ```shell
-PS C:\Users\josh\g\hello-mq> .\mill.bat --no-server app.run
+PS C:\Users\josh\g\hello-mq> .\mill.bat app.run
 [65/72] app.compile
 [65] [info] compiling 1 Scala source to C:\Users\josh\g\hello-mq\out\app\compile.dest\classes ...
 [65] [info] done compiling
